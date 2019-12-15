@@ -1,0 +1,19 @@
+{
+  "name": "base64",
+  "version": "1.0.1",
+  "description": "This app is use to encode to base64 and decode from bas64 a give text",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start:dev": "nodemon src",
+    "start": "node src"
+  },
+  "devDependencies": {
+    "jest": "24.9.0",
+    "nock": "11.7.0",
+    "nodemon": "2.0.2"
+  },
+  "engines": {
+    "node": ">=12"
+  }
+}
