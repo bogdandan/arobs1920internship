@@ -1,0 +1,21 @@
+{
+  "name": "express",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node src",
+    "start:dev": "nodemon src"
+  },
+  "dependencies": {
+    "express": "4.17.1"
+  },
+  "devDependencies": {
+    "jest": "24.9.0",
+    "nodemon": "2.0.2"
+  },
+  "engines": {
+    "node": ">=13.2.0"
+  }
+}
