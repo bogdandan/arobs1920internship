@@ -1,0 +1,19 @@
+name: Node CI
+
+on: [pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use node js version 12.0.0
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.0.0
+      - name: npm install, npm test
+        run: |
+            npm install
+            npm test
+            env:
+              CI: true
