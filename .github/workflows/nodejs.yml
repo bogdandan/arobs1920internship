@@ -12,8 +12,9 @@ jobs:
         with:
           node-version: 12.0.0
       - name: npm install, npm test
-        run: |
+      - run: |
             npm install
             npm test
-            env:
-              CI: true
+      - env:
+            CI:true
+
