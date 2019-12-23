@@ -9,8 +9,4 @@ describe('about [controller]', () => {
             .expect(200)
             .then(response => expect(response.text).toEqual('This app is use to encode to base64 and decode from bas64 a give text 1.0.0'))
     });
-    
-    it('should fail', () => {
-        expect('true').toEqual(false);
-    })
 });
