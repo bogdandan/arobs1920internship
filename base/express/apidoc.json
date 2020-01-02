@@ -1,0 +1,8 @@
+{
+  "name": "express-application",
+  "version": "1.0.0",
+  "description": "This app is use to teach basic js express applications",
+  "apidoc": {
+    "title": "express application"
+  }
+}

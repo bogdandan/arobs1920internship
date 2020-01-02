@@ -1,45 +1,41 @@
-import express from 'express';
+const express = require('express');
 
-const initMiddleWares = (app) => {
-    app.use(express.json());
-    app.use(express.text());
-};
+const app = express();
 
-const initRoutes = (app) => {
-    app.get('/', (req, res, next) => {
-        console.log('this is a middleware ', JSON.stringify(req.query));
-        next();
-    }, (req, res) => {
-        res.status(200).send(`get index route ${JSON.stringify(req.query)}`);
-    });
+app.use(express.text());
+app.use(express.json());
+app.set('PORT', 8080);
 
-    app.get('/:id', (req, res) => {
-        res.status(200).send(`get index route ${req.params.id}`);
-    });
+app.get('/', (req, res) => res.status(200).send('Hello world'));
 
-    app.post('/', (req, res) => {
-        res.status(200).send(`post index route ${JSON.stringify(req.body)}`);
-    });
+app.get('/john', (req, res) => {
+  const { query } = req;
 
-    app.post('/:id', (req, res) => {
-        res.status(200).send(`post index route ${req.params.id} ${JSON.stringify(req.body)}`);
-    });
+  // console.log(query);
 
-    app.put('/', (req, res) => {
-        res.status(200).send(`put index route ${JSON.stringify(req.body)}`);
-    });
+  const queryToString = Object.entries(query)
+    .map(([key, value]) => `${key}:${value}`)
+    .join(' & ');
 
-    app.put('/:id', (req, res) => {
-        res.status(200).send(`put index route ${req.params.id} ${JSON.stringify(req.body)}`);
-    });
-};
+  res.status(200).send(`Hello john ${queryToString}`);
+});
 
-export default (() => {
-    const app = express();
-    app.set('PORT', 8080);
+app.get('/john/:id', (req, res) => {
+  const { id } = req.params;
 
-    initMiddleWares(app);
-    initRoutes(app);
+  res.status(200).send(`Hello john ${id}`);
+});
 
-    return app;
-})();
+app.post('/john', (req, res) => {
+  const { body } = req;
+
+  // console.log(query);
+
+  const bodyToString = Object.entries(body)
+    .map(([key, value]) => `${key}:${value}`)
+    .join(' & ');
+
+  res.status(200).send(`Hello john ${bodyToString}`);
+});
+
+module.exports = app;
