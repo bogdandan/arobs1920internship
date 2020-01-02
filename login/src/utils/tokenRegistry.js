@@ -1,23 +1,23 @@
 class TokenRegistry {
-    constructor() {
-        this.tokens = {};
-    }
+  constructor() {
+    this.tokens = {};
+  }
 
-    add(token) {
-        this.tokens[token] = token;
-    }
+  add(token) {
+    this.tokens[token] = token;
+  }
 
-    get(token) {
-        return this.tokens[token];
-    }
+  get(token) {
+    return this.tokens[token];
+  }
 
-    isValid(token) {
-        return !!this.tokens[token];
-    }
+  isValid(token) {
+    return !!this.tokens[token];
+  }
 
-    clean() {
-        this.tokens = {};
-    }
+  clean() {
+    this.tokens = {};
+  }
 }
 
 module.exports = new TokenRegistry();

@@ -1,4 +1,4 @@
 module.exports = {
-    PORT: 8081,
-    BASE64_URL: 'http://localhost:8080',
+  PORT: 8080,
+  BASE64_URL: 'http://localhost:8082',
 };
