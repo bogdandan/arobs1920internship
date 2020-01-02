@@ -1,0 +1,46 @@
+name: Node CI login
+
+on:
+  pull_request:
+    branches:
+      - master
+      - develop
+      - feature/*
+  push:
+    branches:
+      - master
+      - develop
+      - feature/*
+
+jobs:
+  phase:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 12.0.0
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.0.0
+      - name: login Yarn install
+        run: |
+          pushd login
+          yarn
+          popd
+      - name: login Yarn lint
+        run: |
+          pushd login
+          yarn lint
+          popd
+      - name: login Yarn format diff
+        run: |
+          pushd login
+          yarn format:diff
+          popd
+      - name: login Yarn format test
+        run: |
+          pushd login
+          yarn jest --ci
+          popd
+        env:
+          CI: true

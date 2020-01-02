@@ -1,0 +1,46 @@
+name: Node CI base64
+
+on:
+  pull_request:
+    branches:
+      - master
+      - develop
+      - feature/*
+  push:
+    branches:
+      - master
+      - develop
+      - feature/*
+
+jobs:
+  phase:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 12.0.0
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.0.0
+      - name: base64 Yarn install
+        run: |
+          pushd base64
+          yarn
+          popd
+      - name: base64 Yarn lint
+        run: |
+          pushd base64
+          yarn lint
+          popd
+      - name: base64 Yarn format diff
+        run: |
+          pushd base64
+          yarn format:diff
+          popd
+      - name: base64 Yarn format test
+        run: |
+          pushd base64
+          yarn jest --ci
+          popd
+        env:
+          CI: true

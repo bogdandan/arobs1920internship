@@ -1,0 +1,46 @@
+name: Node CI base/express
+
+on:
+  pull_request:
+    branches:
+      - master
+      - develop
+      - feature/*
+  push:
+    branches:
+      - master
+      - develop
+      - feature/*
+
+jobs:
+  phase:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 12.0.0
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.0.0
+      - name: base/express Yarn install
+        run: |
+          pushd base/express
+          yarn
+          popd
+      - name: base/express Yarn lint
+        run: |
+          pushd base/express
+          yarn lint
+          popd
+      - name: base/express Yarn format diff
+        run: |
+          pushd base/express
+          yarn format:diff
+          popd
+      - name: base/express Yarn format test
+        run: |
+          pushd base/express
+          yarn jest --ci
+          popd
+        env:
+          CI: true

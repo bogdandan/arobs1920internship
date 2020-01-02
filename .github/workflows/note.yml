@@ -1,0 +1,46 @@
+name: Node CI note
+
+on:
+  pull_request:
+    branches:
+      - master
+      - develop
+      - feature/*
+  push:
+    branches:
+      - master
+      - develop
+      - feature/*
+
+jobs:
+  phase:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 12.0.0
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.0.0
+      - name: note Yarn install
+        run: |
+          pushd note
+          yarn
+          popd
+      - name: note Yarn lint
+        run: |
+          pushd note
+          yarn lint
+          popd
+      - name: note Yarn format diff
+        run: |
+          pushd note
+          yarn format:diff
+          popd
+      - name: note Yarn format test
+        run: |
+          pushd note
+          yarn jest --ci
+          popd
+        env:
+          CI: true
