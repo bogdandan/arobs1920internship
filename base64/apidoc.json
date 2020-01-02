@@ -1,0 +1,8 @@
+{
+  "name": "base64",
+  "version": "1.0.0",
+  "description": "This app is use to encode to base64 and decode from bas64 a give text",
+  "apidoc": {
+    "title": "base64"
+  }
+}

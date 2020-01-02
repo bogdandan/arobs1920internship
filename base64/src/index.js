@@ -1,9 +1,14 @@
 const http = require('http');
 const app = require('./app');
 
-http.createServer(app).listen(app.get('PORT'), (err) => {
-    if (err) {
-        console.error(' Could not serve on port ', app.get('PORT'));
-    }
-    console.log(' App listens on port ', app.get('PORT'));
+const port = app.get('PORT');
+
+http.createServer(app).listen(port, (error) => {
+  if (error) {
+    // eslint-disable-next-line no-console
+    console.error('Could not start the server on', port);
+  } else {
+    // eslint-disable-next-line no-console
+    console.log('Server is up and running on', port);
+  }
 });

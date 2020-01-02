@@ -1,9 +1,9 @@
-const encodeController = require('../controllers/encode');
-const decodeController = require('../controllers/decode');
 const aboutController = require('../controllers/about');
+const loginController = require('../controllers/login');
+const authenticateController = require('../controllers/authenticate');
 
 module.exports = (app) => {
-    app.post('/encode', encodeController.post);
-    app.post('/decode', decodeController.post);
-    app.get('/about', aboutController.get);
+  app.get('/about', aboutController.get);
+  app.post('/login', loginController.post);
+  app.post('/authenticate', authenticateController.post);
 };
