@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import LoginFormComponent from './LoginFormComponent';
 
 export default class LoginForm extends Component {
     state = {
@@ -47,32 +48,10 @@ export default class LoginForm extends Component {
 
     render() {
         const {username: {value: username, error: usernameError}, password: {value: password, error: passwordError}} = this.state;
-        return (
-            <div style={{
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-            }}>
-                <form onSubmit={this.onSubmit}>
-                    <h1 data-testid={"LoginFormTitle"}>Login</h1>
-                    <div>
-                        <label>username:</label>
-                    </div>
-                    <input data-testid={"LoginFormUsernameInput"} name={"username"} type={"text"} value={username}
-                           onChange={this.onChange} onFocus={this.onFocus} onBlur={this.onBlur}/>
-                    <span data-testid={"LoginFormUsernameError"}>{!!usernameError && 'Invalid input'}</span>
-                    <div>
-                        <label>password:</label>
-                    </div>
-                    <input data-testid={"LoginFormPasswordInput"} name={"password"} type={"password"} value={password}
-                           onChange={this.onChange} onFocus={this.onFocus} onBlur={this.onBlur}/>
-                    <span data-testid={"LoginFormPasswordError"}>{!!passwordError && 'Invalid input'}</span>
-                    <div>
-                        <button data-testid={"LoginFormSubmitButton"} type={"submit"}>login</button>
-                    </div>
-                </form>
-            </div>
-        )
+
+        return (<LoginFormComponent onSubmit={this.onSubmit} onChange={this.onChange} onFocus={this.onFocus}
+                                    onBlur={this.onBlur} usernameError={usernameError} passwordError={passwordError}
+                                    username={username} password={password}/>)
     }
 
 }
